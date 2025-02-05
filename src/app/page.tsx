@@ -24,7 +24,7 @@ export default function Home() {
     // Decode token to get user info
     const { payload } = decodeToken(idToken);
     console.log({ idToken });
-    window.location.href = `http://localhost:3001?token=${encodeURIComponent(
+    window.location.href = `https://skytrade-demo.onrender.com?token=${encodeURIComponent(
       idToken
     )}`;
   };
