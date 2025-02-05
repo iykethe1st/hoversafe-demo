@@ -1,18 +1,17 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useDispatch, shallowEqual } from "react-redux";
+import { shallowEqual } from "react-redux";
 import { Web3authContext } from "@/providers/web3authProvider";
 import { useRouter } from "next/navigation";
 
-import { setUser } from "@/redux/slices/userSlice";
 import { useAppSelector } from "@/redux/store";
 import { useAuth0 } from "@auth0/auth0-react";
 import { SolanaWallet } from "@web3auth/solana-provider";
 
 const useAuth = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
+
   const [web3authStatus, setWeb3authStatus] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const { web3auth, provider, setProvider } = useContext(Web3authContext);
@@ -26,7 +25,7 @@ const useAuth = () => {
     const userData = localStorage.getItem("user");
     if (userData && userData !== "undefined") {
       const currentUser = JSON.parse(userData);
-      dispatch(setUser(currentUser));
+      console.log({ currentUser });
     }
   }, []);
 
@@ -88,7 +87,7 @@ const useAuth = () => {
   };
 
   const signIn = ({ user }: { user: any }) => {
-    if (user) dispatch(setUser(user));
+    if (user) console.log({ user });
     localStorage.setItem("user", JSON.stringify(user));
   };
 
@@ -109,7 +108,7 @@ const useAuth = () => {
   };
 
   const updateProfile = (updatedUser: any) => {
-    dispatch(setUser(updatedUser));
+    console.log({ updatedUser });
     localStorage.setItem("user", JSON.stringify(updatedUser));
   };
 
