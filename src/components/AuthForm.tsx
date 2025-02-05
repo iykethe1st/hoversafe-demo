@@ -29,7 +29,7 @@ const AuthForm: FC<AuthFormProps> = ({
   handleRedirectToSky,
 }) => {
   const { handleUserNotFound, signOut } = useAuth();
-  const { loginWithRedirect, user } = useAuth0();
+  const { loginWithRedirect, user, logout } = useAuth0();
   const { web3auth, setProvider } = useContext(Web3authContext);
   const { getUser } = UserService();
 
@@ -107,6 +107,15 @@ const AuthForm: FC<AuthFormProps> = ({
             Get Started
           </button>
         )}
+
+        <button
+          color={""}
+          type="button"
+          onClick={() => logout()}
+          className="flex w-full justify-center rounded-md bg-blue-500 px-24 py-4 text-[15px] text-white transition-all duration-500 ease-in-out hover:bg-blue-600"
+        >
+          Log out
+        </button>
       </div>
     </div>
   );
